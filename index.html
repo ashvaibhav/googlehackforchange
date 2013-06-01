@@ -18,18 +18,23 @@
 </style>
 <script type='text/javascript' src='http://code.jquery.com/jquery-1.10.1.min.js'></script>
 <script>
+	var globalData = {};
+	globalData.policeCount = 50;
+	globalData.maxPolice = 50;
 	$(document).ready(function(){
 		loadGame();
 	});
 	function loadGame(){	
-		$("#main").append("<img style='height:500px;width:1000px;' src='http://www.kurzweilai.net/images/Google-logo1.jpg'/>");
+		//$("#main").append("<img style='height:500px;width:1000px;' src='http://www.kurzweilai.net/images/Google-logo1.jpg'/>");
 		for(var id=1;id<50;id++){
 			$("#controls").append("<div class='police' id='police"+id+"'></div>");
 		}
-		$("#main").append("<input id='playBtn' type='button' name='PLAY' value='PLAY' onclick='javascript:startGame();'>");
+		//$("#main").append("<input id='playBtn' type='button' name='PLAY' value='PLAY' onclick='javascript:startGame();'>");
+		startGame();
 	}
 	function startGame(){
-		$("#playBtn").css('display','none');
+		//$("#playBtn").css('display','none');		
+		$("#main").html("<svg id='arena1' xmlns='http://www.w3.org/2000/svg' version='1.1'><circle cx='100' cy='50' r='40' stroke='black' stroke-width='2' fill='green'/></svg>");
 		
 	}
 </script>
@@ -40,6 +45,7 @@
 		<div id='main' class='height' style='width:88%;float:left;border:solid red;'>
 
 			<svg id='arena' xmlns="http://www.w3.org/2000/svg" version="1.1">
+				<circle cx='100' cy='50' r='40' stroke='black' stroke-width='2' fill='red'/>
 			</svg>
 
 		</div>
