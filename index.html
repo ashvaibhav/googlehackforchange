@@ -5,7 +5,7 @@
 }
 
 .police{
-	height:8px;
+	height:6px;
 	background: blue;
 	border: 1px solid gray;
 	padding-top: 2px;
@@ -16,23 +16,34 @@
 }
 
 </style>
+<script type='text/javascript' src='http://code.jquery.com/jquery-1.10.1.min.js'></script>
 <script>
+	$(document).ready(function(){
+		loadGame();
+	});
+	function loadGame(){	
+		$("#main").append("<img style='height:500px;width:1000px;' src='http://www.kurzweilai.net/images/Google-logo1.jpg'/>");
+		for(var id=1;id<50;id++){
+			$("#controls").append("<div class='police' id='police"+id+"'></div>");
+		}
+		$("#main").append("<input id='playBtn' type='button' name='PLAY' value='PLAY' onclick='javascript:startGame();'>");
+	}
+	function startGame(){
+		$("#playBtn").css('display','none');
+		
+	}
 </script>
 <body>
 	<div id='gameWindow' class='height' style='width:100%;'>
 		<div id='controls' class='height' style='width:5%;float:left;border:solid;'>
-			<div class="police"> 	</div>
-			
 		</div>
-		<div id='main' class='height' style='width:88%;float:left;border:solid red;'>this is my main window dont disturb
-			
-			
-			
+		<div id='main' class='height' style='width:88%;float:left;border:solid red;'>
+
+			<svg id='arena' xmlns="http://www.w3.org/2000/svg" version="1.1">
+			</svg>
+
 		</div>
-		<div id='status' class='height right' style='width:5%;float:left;border:solid green;'>
-			
-			
-			
+		<div id='status' class='height right' style='width:5%;float:left;border:solid green;'>			
 		</div>
 	</div>
 </body>
