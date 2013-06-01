@@ -15,15 +15,32 @@
 	background: yellow;
 }
 
+.crime{
+	
+}
+.assignedPolice{
+	float:right;
+}
+
+
 </style>
 <script type='text/javascript' src='http://code.jquery.com/jquery-1.10.1.min.js'></script>
-<script>
+<script>	
+	var globalData = {};
+	globalData.policeCount = 50;
+	globalData.policeAssigned = 1;
+	globalData.minPoliceCount = 3; 	//least amount of police requried for any crime
+	
+	var shoot = {};
+	shoot.reqPolice = 5;
+	
+	
 	$(document).ready(function(){
 		loadGame();
 	});
 	function loadGame(){	
 		$("#main").append("<img style='height:500px;width:1000px;' src='http://www.kurzweilai.net/images/Google-logo1.jpg'/>");
-		for(var id=1;id<50;id++){
+		for(var id=1;id<=50;id++){
 			$("#controls").append("<div class='police' id='police"+id+"'></div>");
 		}
 		$("#main").append("<input id='playBtn' type='button' name='PLAY' value='PLAY' onclick='javascript:startGame();'>");
@@ -32,6 +49,35 @@
 		$("#playBtn").css('display','none');
 		
 	}
+	function assignPolice(crime){
+		
+		if (globalData.policeCount > globalData.minPoliceCount){
+			if(crime.id == 'shoot'){
+				if(shoot.reqPolice <= globalData.policeCount ){
+					alert(shoot.reqPolice);	
+					
+					for(var i=globalData.policeAssigned; i<globalData.policeAssigned +shoot.reqPolice; i ++ ){
+						var policeObject = 'police' + i;
+						$('#'+ policeObject).css('visibility','hidden');	
+					}
+						globalData.policeAssigned += shoot.reqPolice;
+						globalData.policeCount -= shoot.reqPolice;
+					
+						alert(globalData.policeAssigned );
+						alert(globalData.policeCount);
+					
+				}
+			}
+			else if(crime.id == 'type2'){
+				if(shoot.reqPolice <= globalData.policeCount ){
+					alert(shoot.reqPolice);	
+				}
+			}
+		}
+	
+	}
+	
+	
 </script>
 <body>
 	<div id='gameWindow' class='height' style='width:100%;'>
@@ -39,8 +85,14 @@
 		</div>
 		<div id='main' class='height' style='width:88%;float:left;border:solid red;'>
 
-			<svg id='arena' xmlns="http://www.w3.org/2000/svg" version="1.1">
-			</svg>
+			<div class='crime'> 
+				<svg id='arena' xmlns="http://www.w3.org/2000/svg" version="1.1">
+					 <circle cx="100" cy="50" r="40" stroke="black" stroke-width="2" fill="red" id='shoot' onClick='assignPolice(this)'/>
+				</svg>
+				<div class='assignedPolice'>
+					
+				</div>
+			</div>
 
 		</div>
 		<div id='status' class='height right' style='width:5%;float:left;border:solid green;'>			
